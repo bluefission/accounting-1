@@ -78,31 +78,16 @@
                     <div class="divider"></div>
                     <div class="row">
                       <div class="col l3 m3 s12">
-                        <h6><strong>Vehicle</strong></h6>
-                      </div>
-                      <div class="col l3 m3 s12">
-                        <h6>{{$student->stud_vehicle}}</h6>
-                      </div>
-                      <div class="col l3 m3 s12">
                         <h6><strong>Date of Birth</strong></h6>
                       </div>
                       <div class="col l3 m3 s12">
                         <h6>{{date('F d, Y',strtotime($student->stud_date_of_birth))}}</h6>
                       </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="row">
                       <div class="col l3 m3 s12">
-                        <h6><strong> Vehicle Plate No.</strong></h6>
+                        <h6><strong>Company</strong></h6>
                       </div>
                       <div class="col l3 m3 s12">
-                        <h6>{{$student->vehicle_plate_no}}</h6>
-                      </div>
-                      <div class="col l3 m3 s12">
-                        <h6><strong>Vehicle Machine No.</strong></h6>
-                      </div>
-                      <div class="col l3 m3 s12">
-                        <h6>{{$student->vehicle_engine_no}}</h6>
+                        <h6>{{$student->stud_company}}</h6>
                       </div>
                     </div>
                     <div class="divider"></div>
@@ -148,15 +133,6 @@
                       </div>
                       <div class="col l3 m3 s12">
                         <h6>{{$student->stud_occupation}}</h6>
-                      </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="row">
-                      <div class="col l3 m3 s12">
-                        <h6><strong>Company</strong></h6>
-                      </div>
-                      <div class="col l3 m3 s12">
-                        <h6>{{$student->stud_company}}</h6>
                       </div>
                     </div>
                   </div>

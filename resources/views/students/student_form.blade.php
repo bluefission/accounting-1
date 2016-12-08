@@ -55,23 +55,9 @@
 </div>
 
 <div class="row">
-  <div class="input-field col s12 m6 l6">
+  <div class="input-field col s12">
     <input id="number" type="email" name="stud_email" value="{{count($errors)>0?old('stud_email'):$student->stud_email}}">
     <label for="email">Email</label>
-  </div>
-  <div class="input-field col s12 m6 l6">
-    <input id="number" type="text" name="stud_vehicle" value="{{count($errors)>0?old('stud_vehicle'):$student->stud_vehicle}}">
-    <label for="email">Vehicle</label>
-  </div>
-</div>
-<div class="row">
-  <div class="input-field col s12 m6 l6">
-    <input id="number" type="text" name="vehicle_plate_no" value="{{count($errors)>0?old('vehicle_plate_no'):$student->vehicle_plate_no}}">
-    <label for="email">Vehicle Plate No.</label>
-  </div>
-  <div class="input-field col s12 m6 l6">
-    <input id="number" type="text" name="vehicle_engine_no" value="{{count($errors)>0?old('vehicle_engine_no'):$student->vehicle_engine_no}}">
-    <label for="email">Vehicle Engine No.</label>
   </div>
 </div>
 <div class="row">

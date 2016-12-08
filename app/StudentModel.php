@@ -26,7 +26,6 @@ class StudentModel extends Model
                             'stud_tel_no',
                             'stud_contact_name',
                             'stud_contact_tel_no',
-                            'stud_vehicle',
                             'stud_date_of_birth',
                             'stud_birth_place',
                             'stud_email',
@@ -38,7 +37,7 @@ class StudentModel extends Model
                             'stud_nationality',
                             'stud_occupation',
                             'training_station_id',
-                            'updated_by',];
+                            'updated_by'];
                             
 
     public function userCreateInfo(){
