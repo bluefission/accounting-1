@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="input-field col s12 m6 l6">
+  <div class="input-field col s12">
     <select name="account_title_id">
       @if(empty($accountGroupList))
         <option value="" disabled>Select Type of Asset</option>
