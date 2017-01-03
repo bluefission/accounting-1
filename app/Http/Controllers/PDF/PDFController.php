@@ -48,6 +48,9 @@ class PDFController extends Controller
                 case 'expense_summary_report':
                     return $this->generateExpenseSummary()->stream('expense_summary_' . date('m_d_y') . '.pdf');
                     break;
+                case 'monthly_alphalist_report':
+                    return $this->generateMonthlyAlphalist()->setPaper('a4', 'landscape')->stream('monthly_alphalist_' . date('m_d_y') . '.pdf');
+                    break;
                 default:
                     return view('errors.404');
                     break;
@@ -73,6 +76,22 @@ class PDFController extends Controller
             $totalNetValue += $expense->total_amount - ($expense->total_amount * 0.12);
         }
 	    return PDF::loadView('pdf.expense_report_pdf', compact('expenseItemList', 'totalNetValue'));
+	}
+	
+	private function generateMonthlyAlphalist()
+	{
+	    $format = date("Y-m");
+	    $expenseItemList = ExpenseModel::where('created_at', 'LIKE', "{$format}%")->get();
+	    // Total Amount Tax Base and Tax Withheld
+	    $totalTaxBase = 0;
+	    $totalTaxWithheld = 0;
+	    foreach ($expenseItemList as $expense) {
+	        $taxBase = $expense->total_amount;
+	        $taxWithheld = $taxBase * 0.05;
+	        $totalTaxBase += $taxBase;
+	        $totalTaxWithheld += $taxWithheld;
+	    }
+	    return PDF::loadView('pdf.alphalist_pdf', compact('format', 'expenseItemList', 'totalTaxBase', 'totalTaxWithheld'));
 	}
 
 	private function generateReceiptPDF($id){

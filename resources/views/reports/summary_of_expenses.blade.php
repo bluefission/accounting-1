@@ -62,7 +62,15 @@
                                               'year_filter'=>null,
                                               'type'=>null])
                             {!! Form::close() !!}
-                				</button>
+                            
+                						{!!Form::open(['url'=>'pdf','method'=>'POST','target'=>'_blank']) !!}
+                              @include('pdf.pdf_form',['category'=>'monthly_alphalist_report',
+                                              'recordId'=>null,
+                                              'month_filter'=>null,
+                                              'year_filter'=>null,
+                                              'text' => 'Monthly Alphalist of Payees',
+                                              'type'=>null])
+                            {!! Form::close() !!}
               				</div>
                     </div>
                   </div>

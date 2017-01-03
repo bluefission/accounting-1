@@ -28,7 +28,7 @@
 <div class="row">
    <div class="input-field col s12">
       <button class="btn red darken-2 waves-effect waves-light right" type="submit" name="action" style="margin-left:10px;">
-         <i class="material-icons left">picture_as_pdf</i> Generate PDF
+         <i class="material-icons left">picture_as_pdf</i> @if (empty($text)) Generate PDF @else {{ $text }} @endif
       </button>
    </div>
 </div>
