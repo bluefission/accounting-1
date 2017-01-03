@@ -29,7 +29,6 @@
 		<table cellborder="1" style="width:100%; border-collapse: collapse; text-align:center;">
 			<thead>
         <tr>
-            <th>TIN #</th>
             <th>Name</th>
             <th>Address</th>
             <th>Gross Amount</th>
@@ -41,8 +40,7 @@
     		@if(!(empty($expenseItemList)))
   				@foreach($expenseItemList as $expenseItem)
     				<tr>
-                        <td>{{ $expenseItem->vendor_number }}</td>
-                        <td>{{ $expenseItem->vendor_name }}</td>
+                        <td style="text-align: left;">{{ $expenseItem->vendor_name }}<br />TIN #{{ wordwrap($expenseItem->vendor_number, 3, '-', true) }}</td>
                         <td>{{ $expenseItem->vendor_address }}</td>
                         <td>PHP {{ number_format($expenseItem->total_amount, 2, '.', ',') }}</td>
                         <td>PHP {{ number_format($expenseItem->total_amount * 0.12, 2, '.', ',') }}</td>
@@ -51,7 +49,7 @@
     			@endforeach
 	      @endif
           <tr>
-            <td style="text-align: right" colspan="5">Grand Total</td>
+            <td style="text-align: right" colspan="4">Grand Total</td>
             <td>PHP {{number_format($totalNetValue,2,'.',',')}} </td>
           </tr>
   	  </tbody>

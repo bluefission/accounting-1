@@ -35,7 +35,7 @@
                                 @foreach($expenseItemList as $expenseItem)
                                   <tr>
                                     <td><a href="{{route('expense.show',$expenseItem->id)}}"><em><strong>{{sprintf("%'.07d\n", $expenseItem->id)}}</strong></em></a></td>
-                                    <td>{{ $expenseItem->vendor_number }}</td>
+                                    <td>{{ wordwrap($expenseItem->vendor_number, 3, '-', true) }}</td>
                                     <td>{{ $expenseItem->vendor_name }}</td>
                                     <td>{{ $expenseItem->vendor_address }}</td>
                                     <td>PHP {{ number_format($expenseItem->total_amount, 2, '.', ',') }}</td>

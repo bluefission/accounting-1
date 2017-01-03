@@ -425,7 +425,7 @@ Scripts
           if(vendor_name && vendor_address && vendor_number){
             if(vendor_name.length > 3 && vendor_name.length < 255){
               if(vendor_address.length > 3 && vendor_address.length < 255){
-                if(vendor_number.length > 6 && vendor_number.length < 13){
+                if(vendor_number.length == 12){
                   if(data){
                     data = data.substring(0,data.length - 1);
                     $.ajax({
@@ -452,7 +452,7 @@ Scripts
                     alert('Please Input data into table.');
                   }
                 }else{
-                  alert('Vendor Number character Length must be less than 13 or greater than 7');
+                  alert('TIN Number character length must be 12');
                 }
               }else{
                 alert('Vendor Address character Length must be less than 255 or greater than 3');
