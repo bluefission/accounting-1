@@ -239,6 +239,8 @@
                             </li>
                             <li><a href="{{route('stmtcashflow')}}">Statement of CF</a>
                             </li>
+                            <li><a href="{{route('expensesummary')}}">Summary of Expenses</a>
+                            </li>
                             
                         </ul>
                     </div>

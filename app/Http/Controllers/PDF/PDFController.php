@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Utility\UtilityHelper;
+use App\ExpenseModel;
 
 class PDFController extends Controller
 {
@@ -44,6 +45,9 @@ class PDFController extends Controller
                 case 'statement_of_cash_flow_report':
                     return $this->generateCashFlow($yearFilter)->stream('statement_of_cash_flow_'. date('m_d_y').'.pdf');
                     break;
+                case 'expense_summary_report':
+                    return $this->generateExpenseSummary()->stream('expense_summary_' . date('m_d_y') . '.pdf');
+                    break;
                 default:
                     return view('errors.404');
                     break;
@@ -57,6 +61,18 @@ class PDFController extends Controller
 		$invoice = $this->searchInvoice($id);
 		return PDF::loadView('pdf.invoice_pdf',
 								compact('invoice'));
+	}
+	
+	private function generateExpenseSummary()
+	{
+	    $format = date("Y-m");
+	    $expenseItemList = ExpenseModel::where('created_at', 'LIKE', "{$format}%")->get();
+        // Total Net Value
+        $totalNetValue = 0;
+        foreach ($expenseItemList as $expense) {
+            $totalNetValue += $expense->total_amount - ($expense->total_amount * 0.12);
+        }
+	    return PDF::loadView('pdf.expense_report_pdf', compact('expenseItemList', 'totalNetValue'));
 	}
 
 	private function generateReceiptPDF($id){

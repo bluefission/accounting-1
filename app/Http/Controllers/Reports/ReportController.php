@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Utility\UtilityHelper;
+use App\ExpenseModel;
 
 class ReportController extends Controller
 {
@@ -337,5 +338,18 @@ class ReportController extends Controller
 
     }
 
+
+    public function summaryOfExpenses() 
+    {
+        $title = "Summary of Expenses";
+        $format = date("Y-m");
+        $expenseItemList = ExpenseModel::where('created_at', 'LIKE', "{$format}%")->get();
+        // Total Net Value
+        $totalNetValue = 0;
+        foreach ($expenseItemList as $expense) {
+            $totalNetValue += $expense->total_amount - ($expense->total_amount * 0.12);
+        }
+        return view('reports.summary_of_expenses', compact('expenseItemList', 'totalNetValue', 'title'));
+    }
     
 }

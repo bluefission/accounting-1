@@ -6,3 +6,5 @@ Homestead.json
 .env
 .idea/
 .phpintel/
+.htaccess
+.c9/
