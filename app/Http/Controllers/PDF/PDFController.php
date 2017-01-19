@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\PDF;
 
+use App\JournalModel;
 use PDF;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Utility\UtilityHelper;
 use App\ExpenseModel;
+use App\AccountTitleModel;
 
 class PDFController extends Controller
 {
@@ -81,12 +83,19 @@ class PDFController extends Controller
 	private function generateMonthlyAlphalist()
 	{
 	    $format = date("Y-m");
-	    $expenseItemList = ExpenseModel::where('created_at', 'LIKE', "{$format}%")->get();
-	    // Total Amount Tax Base and Tax Withheld
+
+	    // Get the Rent Expense account title
+        $rentExpenseAccountTitle = AccountTitleModel::where('account_title_name', 'LIKE', '%Rent Expense%')->first();
+
+        // Get all expenses
+        $expenseItemList = JournalModel::where('debit_title_id', $rentExpenseAccountTitle->id)->where('created_at', 'LIKE', "{$format}%")->get();
+        //$expenseItemList = ExpenseModel::where('created_at', 'LIKE', "{$format}%")->get();
+
+        // Total Amount Tax Base and Tax Withheld
 	    $totalTaxBase = 0;
 	    $totalTaxWithheld = 0;
 	    foreach ($expenseItemList as $expense) {
-	        $taxBase = $expense->total_amount;
+	        $taxBase = $expense->debit_amount;
 	        $taxWithheld = $taxBase * 0.05;
 	        $totalTaxBase += $taxBase;
 	        $totalTaxWithheld += $taxWithheld;

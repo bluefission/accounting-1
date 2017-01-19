@@ -31,7 +31,7 @@
         <tr>
             <th></th>
             <th>TIN</th>
-            <th>Registered Name</th>
+            <th style="text-align: left;">Registered Name</th>
             <th>Return Period</th>
             <th>ATC</th>
             <th>Nature of Income Payment</th>
@@ -46,14 +46,14 @@
   				@foreach($expenseItemList as $expenseItem)
     				<tr>
     				    <td style="text-align: right;">{{ $i }}</td>
-    				    <td style="text-align: left;">{{ wordwrap($expenseItem->vendor_number, 3, '-', true) }}</td>
-                        <td style="text-align: left;">{{ $expenseItem->vendor_name }}</td>
+    				    <td style="text-align: left;">{{ wordwrap(\App\ExpenseModel::where('id', $expenseItem->expense_id)->first()['vendor_number'], 3, '-', true) }}</td>
+                        <td style="text-align: left;">{{ \App\ExpenseModel::where('id', $expenseItem->expense_id)->first()['vendor_name'] }}</td>
                         <td>{{ date("m/y") }}</td>
                         <td>WC100</td>
-                        <td style="text-align: left;">RENTAL</td>
+                        <td>RENTAL</td>
                         <td>5%</td>
-                        <td>PHP {{ number_format($expenseItem->total_amount, 2, '.', ',') }}</td> 
-                        <td>PHP {{ number_format($expenseItem->total_amount * 0.05, 2, '.', ',') }}</td>
+                        <td>PHP {{ number_format(\App\ExpenseModel::where('id', $expenseItem->expense_id)->first()['total_amount'], 2, '.', ',') }}</td>
+                        <td>PHP {{ number_format(\App\ExpenseModel::where('id', $expenseItem->expense_id)->first()['total_amount'] * 0.05, 2, '.', ',') }}</td>
         		</tr>
         		@php ($i++)
     			@endforeach

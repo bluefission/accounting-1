@@ -535,7 +535,7 @@ trait UtilityHelper
 
     public function getControlNo($tableName){
         return DB::table('INFORMATION_SCHEMA.TABLES')  
-                        ->where('TABLE_SCHEMA','=','c9')
+                        ->where('TABLE_SCHEMA','=',env('DB_DATABASE', 'thesis'))
                         ->where('TABLE_NAME','=',$tableName)
                         ->first();
     }
