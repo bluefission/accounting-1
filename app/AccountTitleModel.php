@@ -23,6 +23,7 @@ class AccountTitleModel extends Model
                             'opening_balance',
                             'description',
                             'account_title_id',
+                            'tax_rate',
                             'created_by',
                             'updated_by'];
 

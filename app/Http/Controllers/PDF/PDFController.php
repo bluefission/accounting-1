@@ -88,14 +88,14 @@ class PDFController extends Controller
         $rentExpenseAccountTitle = AccountTitleModel::where('account_title_name', 'LIKE', '%Rent Expense%')->first();
 
         // Get all expenses
-        $expenseItemList = JournalModel::where('debit_title_id', $rentExpenseAccountTitle->id)->where('created_at', 'LIKE', "{$format}%")->get();
-        //$expenseItemList = ExpenseModel::where('created_at', 'LIKE', "{$format}%")->get();
+        //$expenseItemList = JournalModel::where('debit_title_id', $rentExpenseAccountTitle->id)->where('created_at', 'LIKE', "{$format}%")->get();
+        $expenseItemList = \App\ExpenseItemModel::where('created_at', 'LIKE', "{$format}%")->get();
 
         // Total Amount Tax Base and Tax Withheld
 	    $totalTaxBase = 0;
 	    $totalTaxWithheld = 0;
 	    foreach ($expenseItemList as $expense) {
-	        $taxBase = $expense->debit_amount;
+	        $taxBase = $expense->amount;
 	        $taxWithheld = $taxBase * 0.05;
 	        $totalTaxBase += $taxBase;
 	        $totalTaxWithheld += $taxWithheld;

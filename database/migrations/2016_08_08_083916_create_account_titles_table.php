@@ -22,6 +22,9 @@ class CreateAccountTitlesTable extends Migration
                 $table->string('description',255)->default('No Description');
                 $table->Integer('account_title_id')->unsigned()->nullable();
                 $table->foreign('account_title_id')->references('id')->on('account_titles');
+                $table->string('tax_rate')->nullable();
+                $table->string('atc')->nullable();
+                $table->string('nature')->nullable();
                 $table->Integer('created_by')->unsigned()->nullable();
                 $table->foreign('created_by')->references('id')->on('users');
                 $table->Integer('updated_by')->unsigned()->nullable();

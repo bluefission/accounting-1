@@ -1,3 +1,6 @@
+<script>
+    var type = '';
+</script>
 @if(!(is_null($eAccountTitle->id)))
    <div class="row">
       <div class="input-field col s12 m12 l12">
@@ -14,8 +17,11 @@
             <input type="hidden" name = "account_group_id" value="{{$accountGroupsList->id}}">
             <input id="name" type="text" name="account_group_name" value="{{count($errors)>0?old('account_group_name'):$accountGroupsList->account_group_name}}" disabled>
             <label for="account_title_name" class="active">Account Title</label>
+             <script>
+                 type = '{{ $accountGroupsList->account_group_name }}';
+             </script>
          @else
-            <select name="account_group_id">
+            <select name="account_group_id" id="account_group_id">
                @foreach($accountGroupsList as $key=>$value)
                   <option value="{{$key}}">{{$value}}</option>
                @endforeach
@@ -46,6 +52,21 @@
    </div>
 </div>
 
+<div class="row tax_rate_row" style="display: none;">
+    <div class="input-field col s12">
+        <input id="tax_rate" type="text" name="tax_rate" value="{{ count($errors) > 0 ? old('tax_rate') : $accountTitle->tax_rate }}" />
+        <label for="tax_rate">Tax Rate (in %)</label>
+    </div>
+    <div class="input-field col s12">
+        <input id="atc" type="text" name="atc" value="{{ count($errors) > 0 ? old('atc') : $accountTitle->atc }}">
+        <label for="atc">ATC</label>
+    </div>
+    <div class="input-field col s12">
+        <input id="nature" type="text" name="nature" value="{{ count($errors) > 0 ? old('nature') : $accountTitle->nature }}">
+        <label for="nature">Nature of Income Payment</label>
+    </div>
+</div>
+
 
 <div class="row right-align">
  <div class="col l12 m12 s12">
@@ -54,4 +75,24 @@
     </button>
  </div>
 </div>
-                                 
+@section('custom_scripts')
+<script>
+    $(function () {
+        if ($('#account_group_id option:selected').html() != null) {
+            type = $('#account_group_id option:selected').html();
+        }
+        $('#account_group_id').change(function () {
+            type = $('#account_group_id option:selected').html();
+            recalcTax();
+        });
+        function recalcTax() {
+            if (type == 'Expenses') {
+                $('.tax_rate_row').slideDown();
+            } else {
+                $('.tax_rate_row').slideUp();
+            }
+        }
+        recalcTax();
+    });
+</script>
+@endsection

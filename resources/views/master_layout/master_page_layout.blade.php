@@ -85,7 +85,8 @@
     @include('footer.footer')
   </footer>
     <!-- END FOOTER -->
-   @include('scripts.scripts');
+   @include('scripts.scripts')
+  @yield('custom_scripts')
 </body>
 
 </html>
