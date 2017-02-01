@@ -33,7 +33,7 @@
   
   		<div style="width:100%">
       	<div style="float:left;">
-          	<strong>Invoice #: {{sprintf("%'.07d\n",$invoice->id)}}</strong>
+          	<strong>Invoice #{{sprintf("%'.07d\n",$invoice->id)}}</strong>
       	</div>
       		<div style="float:right;">
           		Payment Due Date: {{date('F d, Y',strtotime($invoice->payment_due_date))}}
@@ -80,7 +80,7 @@
                   <td style="padding:0px 10px 0px 10px;">PHP {{number_format($invoice->total_amount/1.12,2,'.',',')}}</td>
               </tr> -->
           		<tr>
-              		<td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount: </td>
+              		<td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount (Discounts and VAT Processed): </td>
               		<td>PHP {{number_format($invoice->total_amount,2,'.',',')}}</td>
           		</tr>
       		</table>

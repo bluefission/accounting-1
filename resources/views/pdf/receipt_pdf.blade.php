@@ -24,7 +24,7 @@
           		<h2><strong>A1 Driving School</strong></h2>
       		</div>
       		<div style="float:right;">
-          		<h2>Cash Receipt</h2>
+          		<h2>Receipt</h2>
       		</div>
   		</div>
   		<hr/>
@@ -34,11 +34,11 @@
           	<strong>Receipt #: {{sprintf("%'.07d\n",$receipt->id)}}</strong>
       	</div>
       		<div style="float:right;">
-          		Date Paid: {{date('F d, Y',strtotime($receipt->created_at))}}
+				<strong>Date Paid: {{date('F d, Y',strtotime($receipt->created_at))}}</strong>
       		</div>
   		</div>
   		<div>
-      		<strong>Nnvoice Info Reference #: {{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</strong>
+      		<strong>Invoice Info Reference #: {{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</strong>
   		</div>
   		<br/>
   		<div>
@@ -59,6 +59,11 @@
   		<br/>
   		<div>
       		<table border="1" style="width:100%; border-collapse: collapse; border: 1px solid black;">
+				<tr class="header">
+					<th colspan="3">
+						<h4><strong>Paid via {{ $receipt->payment_method }}@if (!empty($receipt->check_ref)) (@if (is_numeric($receipt->check_ref))#{{ $receipt->check_ref }}@else{{ $receipt->check_ref }}@endif) @endif</strong></h4>
+					</th>
+				</tr>
           		<tr>
               		<th> Item </th>
               		<th> Description</th>
@@ -72,33 +77,44 @@
 	          		</tr>
           		
           		@endforeach
-              <tr>
+              <!--<tr>
                   <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Sub Total: </td>
                   <td>PHP {{number_format($receipt->invoiceInfo->total_amount-(number_format($receipt->invoiceInfo->total_amount/1.12,2)),2,'.',',')}}</td>
               </tr>
               <tr>
                   <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> VAT(12%): </td>
                   <td>PHP {{number_format($receipt->invoiceInfo->total_amount/1.12,2,'.',',')}}</td>
-              </tr> 
+              </tr> -->
           		<tr>
-              		<td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount: </td>
+              		<td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount (Discounts and VAT Processed) </td>
               		<td>PHP {{number_format($receipt->invoiceInfo->total_amount,2,'.',',')}}</td>
           		</tr>
               <tr>
-                  <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Amount Paid: </td>
+                  <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Amount Paid </td>
                   <td>PHP {{$receipt->amount_paid}}</td>
               </tr>
               @if($receipt->outstanding_balance != 0)
                 <tr>
-                    <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Outstanding Balance: </td>
+                    <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Outstanding Balance </td>
                     <td>PHP {{$receipt->outstanding_balance}}</td>
                 </tr>
               @elseif($receipt->change != 0)
                 <tr>
-                  <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Change: </td>
+                  <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Change </td>
                     <td>PHP {{$receipt->change}}</td>
                 </tr>
               @endif
+				<!--
+				<tr>
+					<td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Payment Method </td>
+					<td>{{$receipt->payment_method}}</td>
+				</tr>
+				@if (!empty($receipt->check_ref))
+					<tr>
+						<td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Check Reference Number </td>
+						<td>{{$receipt->check_ref}}</td>
+					</tr>
+				@endif -->
               
       		</table>
   		</div>

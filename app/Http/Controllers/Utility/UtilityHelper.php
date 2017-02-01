@@ -243,6 +243,7 @@ trait UtilityHelper
         $eRecord = $this->getLastRecord($type,array('id'=> $foreignValue));
         $accountTitlesList = $this->getLastRecord('AccountGroupModel',array('account_group_name'=>$groupName));
         $tArrayStringList = explode(",",$data);
+
         foreach ($accountTitlesList->accountTitles as $accountTitle) {
             foreach ($accountTitle->items as $item) {
                 $itemList[$item->item_name] = $item->id;
@@ -251,7 +252,7 @@ trait UtilityHelper
         // foreach ($incomeAccountTitlesList->accountTitles as $tIncomeAccountTitle) {
         //     $eIncomeAccountTitlesList[$tIncomeAccountTitle->account_title_name] = $tIncomeAccountTitle->id;
         // }
-        
+
         foreach ($tArrayStringList as $tString) {
             ++$count;
             if($count==1){
@@ -341,7 +342,7 @@ trait UtilityHelper
             foreach ($tDataHolder as $key => $value) {
                 $journalEntryList[] = $this->populateJournalEntry($foreignKey,$foreignValue,$typeName,
                                             null,$key,0.00,
-                                            $value,$description,$dataCreated,
+                                            $amount,$description,$dataCreated,
                                             date('Y-m-d'));
             }
 

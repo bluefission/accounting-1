@@ -53,6 +53,14 @@ Scripts
                   sub.text(parseFloat(res).toFixed(2));
               }
           });
+          $('#payment_method').change(function () {
+              var type = $(this).val();
+              if (type == 'Check') {
+                  $('.show_ref').slideDown();
+              } else {
+                  $('.show_ref').slideUp();
+              }
+          });
       });
 
       var arrayTd;

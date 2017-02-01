@@ -84,13 +84,17 @@ class ReceiptController extends Controller
             $receiptId = $this->insertRecords('payment_transaction',$input,false);
 
             //Insert Journal Entry for Receipt
+            $ref = 'N/A';
+            if (!empty($input['check_ref'])) {
+                $ref = $input['check_ref'];
+            }
             $this->insertRecords('journal_entry',$this->createJournalEntry($input,
                                                                             'Receipt',
                                                                             'receipt_id',
                                                                             $receiptId,
-                                                                            'Created Receipt for Student ' .
+                                                                            'Created ' . $input['payment_method'] . ' Receipt for Student ' .
                                                                                 $invoice->studentInfo->stud_first_name . ' ' .
-                                                                                $invoice->studentInfo->stud_last_name,
+                                                                                $invoice->studentInfo->stud_last_name . ' (Reference: ' . $ref . ')',
                                                                             $balance<0?$amount:$input['amount_paid']),
                                 true);
             $this->createSystemLogs('Created New Receipt Record');

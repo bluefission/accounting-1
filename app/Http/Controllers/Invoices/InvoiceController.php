@@ -95,6 +95,9 @@ class InvoiceController extends Controller
                                                                 'invoice_id',
                                                                 $studInvId,
                                                                 'InvoiceModel');
+
+            //$dataToInsert[0]['amount'] = $input['total_amount'];
+
             //Insert Invoice Items
             $this->insertRecords('invoice_items',$dataToInsert,true);
 

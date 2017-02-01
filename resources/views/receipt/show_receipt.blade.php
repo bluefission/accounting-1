@@ -117,17 +117,17 @@
 				                        <td>₱ {{number_format($invoiceItem->amount,2,'.',',')}}</td>
 				                    </tr>
                     			@endforeach
-                      			<tr>
+                      			<!--<tr>
                         			<td>Sub Total:</td>
-                        			<!--td>₱ {{number_format(number_format($receipt->invoiceInfo->total_amount,2) - number_format($receipt->invoiceInfo->total_amount*.12,2),2)}}</td-->
+                        			<td>₱ {{number_format(number_format($receipt->invoiceInfo->total_amount,2) - number_format($receipt->invoiceInfo->total_amount*.12,2),2)}}</td>
                               <td>₱ {{number_format($receipt->invoiceInfo->total_amount - $receipt->invoiceInfo->total_amount/1.12,2,'.',',')}}</td>
                        			</tr>
                       			<tr>
                         			<td>VAT (12%)</td>
                         			<td>₱ {{number_format($receipt->invoiceInfo->total_amount *.12,2,'.',',')}}</td>
-                      			</tr>
+                      			</tr> -->
                       			<tr>
-			                        <td class="cyan white-text">Grand Total</td>
+			                        <td class="cyan white-text">Grand Total (Discounts and VAT Processed)</td>
 			                        <td class="cyan strong white-text">₱ {{number_format($receipt->invoiceInfo->total_amount,2,'.',',')}}</td>
                       			</tr>
                       			<tr>
@@ -147,6 +147,16 @@
 			                        <td class="red darken-2 white-text">Tendered By</td>
 			                        <td class="red darken-2 white-text">{{Auth::user()->first_name}}&nbsp;{{Auth::user()->last_name}}</td>
                       			</tr>
+							<tr>
+								<td class="cyan white-text">Payment Method</td>
+								<td class="cyan white-text">{{$receipt->payment_method}}</td>
+							</tr>
+							@if (!empty($receipt->check_ref))
+								<tr>
+									<td class="cyan white-text">Check Reference Number</td>
+									<td class="cyan white-text">{{$receipt->check_ref}}</td>
+								</tr>
+							@endif
                     		</tbody>
                   		</table>
                 	</div>

@@ -53,11 +53,11 @@
                      		</div>
                      		<div class="col s12 m3 l2">
                         		<p class="strong">Invoice No</p>
-                        		<h4 class="header">{{sprintf("%'.07d\n", $invoice->id)}}</h4>
+                        		<h4 class="header">#{{sprintf("%'.07d\n", $invoice->id)}}</h4>
                      		</div>
                      		<div class="col s12 m3 l4">
                         		<p class="strong">Due Date</p>
-                        		<h4 class="header">{{date('d F,Y',strtotime($invoice->payment_due_date))}}</h4>
+                        		<h4 class="header">{{date('d F, Y',strtotime($invoice->payment_due_date))}}</h4>
                      		</div>
                   		</div>
                		</div>
@@ -81,7 +81,7 @@
                         		</tr>
                         		@endforeach
                         		<tr>
-                           			<td class="grey darken-4 white-text">Grand Total</td>
+                           			<td class="grey darken-4 white-text">Grand Total (Discounts and VAT Processed)</td>
                            			<td class="grey darken-4 strong white-text">₱ {{number_format($invoice->total_amount,2,'.',',')}}</td>
                         		</tr>
                      		</tbody>

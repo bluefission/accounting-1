@@ -111,20 +111,6 @@
                       			</tr>
                     		</thead>
                     		<tbody class="items">
-                    			@foreach($invoice->invoiceItemsInfo as $invoiceItem)
-                    				<tr>
-				                        <td>{{$invoiceItem->item->item_name}}</td>
-				                        <td>₱ {{$invoiceItem->amount}}</td>
-				                    </tr>
-                    			@endforeach
-                      			<tr>
-                        			<td>Sub Total:</td>
-                        			<td>₱ {{number_format($invoice->total_amount - $invoice->total_amount/1.12,2)}}</td>
-                       			</tr>
-                      			<tr>
-                        			<td>VAT (12%)</td>
-                        			<td>₱ {{number_format($invoice->total_amount /1.12,2,'.',',')}}</td>
-                      			</tr>
                       			<tr>
 			                        <td class="cyan white-text">Grand Total</td>
 			                        <td class="cyan strong white-text">₱ {{number_format($invoice->total_amount,2,'.',',')}}</td>
@@ -145,11 +131,32 @@
 	                      			<tr>
 				                        <td >Amount Paid (₱) </td>
 				                        <td >
-				                        	<div class="input-field col s12 m12 l6">
-				                        		<input type="number" min="1" step="0.01" name="amount_paid" id="paidAmount" required>
+				                        	<div class="input-field col s12">
+				                        		<input type="number" placeholder="Amount Paid" min="1" step="0.01" name="amount_paid" id="paidAmount" required autofocus>
 				                        	</div>
 				                        </td>
 	                      			</tr>
+									<tr>
+										<td>Payment Method</td>
+										<td>
+											<div class="input-field col s12">
+												<select class="browser-default" id="payment_method" name="payment_method" required>
+													<option value="">Choose one</option>
+													<option value="Cash">Cash</option>
+													<option value="Card">Card</option>
+													<option value="Check">Check</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr class="show_ref" style="display: none;">
+										<td>Check Reference Number</td>
+										<td>
+											<div class="input-field col s12">
+												<input type="text" name="check_ref" id="check_ref" placeholder="Reference Number (Optional)" />
+											</div>
+										</td>
+									</tr>
 	                      			<!-- Floating Action Button -->
           								    <div class="fixed-action-btn" style="bottom: 50px; right: 19px;">
           								    	<button class="btn-floating btn-large red darken-2" type="submit" name="action">

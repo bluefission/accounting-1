@@ -24,6 +24,8 @@ class CreateStudentPaymentTransactionTable extends Migration
                 $table->foreign('updated_by')->references('id')->on('users');
                 $table->decimal('amount_paid',10,2)->default(0.00);
                 $table->decimal('outstanding_balance',10,2)->default(0.00);
+                $table->string('payment_method')->default('Cash');
+                $table->string('check_ref')->nullable();
                 //$table->binary('file_related');
                 $table->timestamps();
             });
