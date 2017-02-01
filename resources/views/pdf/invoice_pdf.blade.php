@@ -71,14 +71,14 @@
 	              		<td> PHP {{number_format($invItem->amount,2,'.',',')}}  </td>
 	          		</tr>
           		@endforeach
-              <tr>
+              <!-- <tr>
                   <td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Sub Total: </td>
                   <td>PHP {{number_format($invoice->total_amount-(number_format($invoice->total_amount/1.12,2)),2,'.',',')}}</td>
               </tr>
               <tr>
                   <td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> VAT(12%): </td>
                   <td style="padding:0px 10px 0px 10px;">PHP {{number_format($invoice->total_amount/1.12,2,'.',',')}}</td>
-              </tr>
+              </tr> -->
           		<tr>
               		<td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount: </td>
               		<td>PHP {{number_format($invoice->total_amount,2,'.',',')}}</td>

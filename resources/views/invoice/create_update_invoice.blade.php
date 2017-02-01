@@ -173,6 +173,7 @@
 	              			</tr-->
 	            		</tbody>
 	          		</table>
+					<!--
 	         		<table class="striped" id="amountCalc">
 	            		<tbody>
 	              			<tr>
@@ -189,6 +190,23 @@
 	              			</tr>
 	            		</tbody>
 	          		</table>
+	          		-->
+					<table class="striped" id="invoiceTotal">
+						<tbody>
+						<tr>
+							<td width="42">Discount (in %)</td>
+							<td><input type="number" min="0" id="discount" value="0" /></td>
+						</tr>
+						<tr>
+							<td width="42%">VAT Exemption</td>
+							<td><input type="checkbox" id="vat" name="vat"><label for="vat">VAT Exempt</label></td>
+						</tr>
+						<tr>
+							<td width="42%">Sub Total:</td>
+							<td>₱ <span id="inv_grandtotal">0.00</span></td>
+						</tr>
+						</tbody>
+					</table>
 	        	</div>
 	      	</div>
 	      	

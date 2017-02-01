@@ -23,6 +23,37 @@ Scripts
 <script type="text/javascript">
   /*Show entries on click hide*/
   $(document).ready(function(){
+      $(function () {
+          $('#discount').keyup(function () {
+              var discount = $(this);
+              var perc = ('0' + discount.val()).slice(-2);
+              var finalPerc = parseFloat('0.' + perc);
+              var grandtotal = $('#totDue').text().replace('₱ ','');
+              var res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
+              var sub = $('#inv_grandtotal');
+              if ($('#vat').is(':checked')) {
+                  var res = parseFloat(sub.text()).toFixed(2) - (parseFloat(sub.text()).toFixed(2) * 0.12);
+                  sub.text(parseFloat(res).toFixed(2));
+              } else {
+                  var res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
+                  sub.text(parseFloat(res).toFixed(2));
+              }
+          });
+          $('#vat').change(function () {
+              var sub = $('#inv_grandtotal');
+              var grandtotal = $('#totDue').text().replace('₱ ','');
+              var discount = $('#discount');
+              var perc = ('0' + discount.val()).slice(-2);
+              var finalPerc = parseFloat('0.' + perc);
+              if ($(this).is(':checked')) {
+                  var res = parseFloat(sub.text()).toFixed(2) - (parseFloat(sub.text()).toFixed(2) * 0.12);
+                  sub.text(parseFloat(res).toFixed(2));
+              } else {
+                  var res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
+                  sub.text(parseFloat(res).toFixed(2));
+              }
+          });
+      });
 
       var arrayTd;
       calculateAmount();
@@ -128,7 +159,8 @@ Scripts
           var invoiceId = $('meta[name="invoice_id"]').attr('content');
           var dueDate = $('#paymentDueDate').val();
           var table = $('#itemsTable tbody');
-          var totalAmount = $("#amountCalc tbody tr:eq(2) td:nth-child(2)").text().replace('₱ ','');
+          //var totalAmount = $("#amountCalc tbody tr:eq(2) td:nth-child(2)").text().replace('₱ ','');
+          var totalAmount = $('#inv_grandtotal').text();
 
           console.log('../../invoice' + (_method==='POST'?'':(invoiceId+'/edit')));
           var dateConverter = dueDate.split(" ");
@@ -138,7 +170,7 @@ Scripts
               $(this).find('td').each(function (colIndex, c) {
                 if(c.textContent.trim())
                   data+=( (c.textContent.replace('₱ ',''))+',');
-                });
+               });
             });
             if(data){
               data = data.substring(0,data.length - 1);
@@ -201,6 +233,7 @@ Scripts
         vatTotal = (grandtotal/1.12).toFixed(2);
         subTotal = (grandtotal-vatTotal).toFixed(2);
         //Putting the total amount in another table for viewing
+        $('#inv_grandtotal').text(grandtotal.toFixed(2));
         $("#amountCalc tbody tr:eq(0) td:nth-child(2)").text('₱ ' + subTotal);
         $("#amountCalc tbody tr:eq(1) td:nth-child(2)").text('₱ ' + vatTotal);
         $("#amountCalc tbody tr:eq(2) td:nth-child(2)").text('₱ ' + grandtotal.toFixed(2));
