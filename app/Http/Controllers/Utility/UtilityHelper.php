@@ -544,7 +544,7 @@ trait UtilityHelper
 
     public function sendEmailVerification($toAddress,$name,$confirmation_code){
         Mail::send('emails.user_verifier',$confirmation_code, function($message) use ($toAddress, $name){
-            $message->from('do_not_reply@a1driving.com','User Verification');
+            $message->from('noreply@accounting.ml','User Verification');
             $message->to($toAddress, $name)
                         ->subject('Verify your Account');
         });
