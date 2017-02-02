@@ -31,27 +31,8 @@ Scripts
               var grandtotal = $('#totDue').text().replace('₱ ','');
               var res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
               var sub = $('#inv_grandtotal');
-              if ($('#vat').is(':checked')) {
-                  var res = parseFloat(sub.text()).toFixed(2) - (parseFloat(sub.text()).toFixed(2) * 0.12);
-                  sub.text(parseFloat(res).toFixed(2));
-              } else {
-                  var res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
-                  sub.text(parseFloat(res).toFixed(2));
-              }
-          });
-          $('#vat').change(function () {
-              var sub = $('#inv_grandtotal');
-              var grandtotal = $('#totDue').text().replace('₱ ','');
-              var discount = $('#discount');
-              var perc = ('0' + discount.val()).slice(-2);
-              var finalPerc = parseFloat('0.' + perc);
-              if ($(this).is(':checked')) {
-                  var res = parseFloat(sub.text()).toFixed(2) - (parseFloat(sub.text()).toFixed(2) * 0.12);
-                  sub.text(parseFloat(res).toFixed(2));
-              } else {
-                  var res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
-                  sub.text(parseFloat(res).toFixed(2));
-              }
+              res = parseFloat(grandtotal).toFixed(2) - (parseFloat(grandtotal).toFixed(2) * finalPerc);
+              sub.text(parseFloat(res).toFixed(2));
           });
           $('#payment_method').change(function () {
               var type = $(this).val();
