@@ -91,17 +91,17 @@
           		</tr>
               <tr>
                   <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Amount Paid </td>
-                  <td>PHP {{$receipt->amount_paid}}</td>
+                  <td>PHP {{number_format($receipt->amount_paid,2,'.',',')}}</td>
               </tr>
               @if($receipt->outstanding_balance != 0)
                 <tr>
                     <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Outstanding Balance </td>
-                    <td>PHP {{$receipt->outstanding_balance}}</td>
+                    <td>PHP {{number_format($receipt->outstanding_balance,2,'.',',')}}</td>
                 </tr>
               @elseif($receipt->change != 0)
                 <tr>
                   <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Change </td>
-                    <td>PHP {{$receipt->change}}</td>
+                    <td>PHP {{number_format($receipt->change,2,'.',',')}}</td>
                 </tr>
               @endif
 				<!--
