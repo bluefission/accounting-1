@@ -93,6 +93,7 @@ trait UtilityHelper
         $ebranchList = array();
         if($id==null){
             $tBranchList = DB::table('branch')
+                            ->orderBy('branch_name', 'ASC')
                             ->get();
             foreach($tBranchList as $tBranch){
                 $ebranchList[$tBranch->id] = $tBranch->branch_name;
