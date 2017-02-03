@@ -69,13 +69,14 @@
               		<th> Description</th>
               		<th> Amount </th>
           		</tr>
+				@php ($total = 0)
           		@foreach($receipt->invoiceInfo->invoiceItemsInfo as $invItem)
           			<tr>
 	              		<td> {{$invItem->item->item_name}}  </td>
 	              		<td> {{$invItem->remarks}}  </td>
 	              		<td> PHP {{number_format($invItem->amount,2,'.',',')}}  </td>
 	          		</tr>
-          		
+					@php ($total += $invItem->amount)
           		@endforeach
               <!--<tr>
                   <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Sub Total: </td>
@@ -85,8 +86,16 @@
                   <td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> VAT(12%): </td>
                   <td>PHP {{number_format($receipt->invoiceInfo->total_amount/1.12,2,'.',',')}}</td>
               </tr> -->
+				<tr>
+					<td colspan="2" style="background: #eee" align="right">Total</td>
+					<td>PHP {{ number_format($total, 2, '.', ',') }}</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="background: #eee" align="right">Discount</td>
+					<td>{{ number_format(100 - ($receipt->invoiceInfo->total_amount / $total) * 100, 0) }}%</td>
+				</tr>
           		<tr>
-              		<td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount (Discounts and VAT Processed) </td>
+              		<td style="background: #eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount</td>
               		<td>PHP {{number_format($receipt->invoiceInfo->total_amount,2,'.',',')}}</td>
           		</tr>
               <tr>

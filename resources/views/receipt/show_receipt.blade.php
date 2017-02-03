@@ -111,11 +111,13 @@
                       			</tr>
                     		</thead>
                     		<tbody class="items">
+							@php ($total = 0)
                     			@foreach($receipt->invoiceInfo->invoiceItemsInfo as $invoiceItem)
                     				<tr>
 				                        <td>{{$invoiceItem->item->item_name}}</td>
 				                        <td>₱ {{number_format($invoiceItem->amount,2,'.',',')}}</td>
 				                    </tr>
+									@php ($total += $invoiceItem->amount)
                     			@endforeach
                       			<!--<tr>
                         			<td>Sub Total:</td>
@@ -126,8 +128,16 @@
                         			<td>VAT (12%)</td>
                         			<td>₱ {{number_format($receipt->invoiceInfo->total_amount *.12,2,'.',',')}}</td>
                       			</tr> -->
+								<tr>
+									<td class="cyan white-text">Total</td>
+									<td class="cyan strong white-text">₱ {{ number_format($total, 2, '.', ',') }}</td>
+								</tr>
+							<tr>
+								<td class="cyan white-text">Discount</td>
+								<td class="cyan strong white-text">{{ number_format(100 - (($receipt->invoiceInfo->total_amount / $total) * 100),0) }}%</td>
+							</tr>
                       			<tr>
-			                        <td class="cyan white-text">Grand Total (Discounts and VAT Processed)</td>
+			                        <td class="cyan white-text">Grand Total</td>
 			                        <td class="cyan strong white-text">₱ {{number_format($receipt->invoiceInfo->total_amount,2,'.',',')}}</td>
                       			</tr>
                       			<tr>

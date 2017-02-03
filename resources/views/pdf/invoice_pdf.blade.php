@@ -63,24 +63,36 @@
               		<th> Description</th>
               		<th> Amount </th>
           		</tr>
-              
+              @php ($invoiceTotal = 0)
           		@foreach($invoice->invoiceItemsInfo as $invItem)
           			<tr>
 	              		<td> {{$invItem->item->item_name}}  </td>
 	              		<td> {{$invItem->remarks}}  </td>
 	              		<td> PHP {{number_format($invItem->amount,2,'.',',')}}  </td>
 	          		</tr>
+					@php ($invoiceTotal += $invItem->amount)
           		@endforeach
-              <!-- <tr>
+				<tr>
+					<td style="background: #eee;" colspan="3" align="center">Totals</td>
+				</tr>
+              <tr>
                   <td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Sub Total: </td>
-                  <td>PHP {{number_format($invoice->total_amount-(number_format($invoice->total_amount/1.12,2)),2,'.',',')}}</td>
+                  <td>PHP {{number_format($invoiceTotal-($invoiceTotal * 0.12),2,'.',',')}}</td>
               </tr>
               <tr>
                   <td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> VAT(12%): </td>
-                  <td style="padding:0px 10px 0px 10px;">PHP {{number_format($invoice->total_amount/1.12,2,'.',',')}}</td>
-              </tr> -->
+                  <td>PHP {{number_format($invoiceTotal * 0.12,2,'.',',')}}</td>
+              </tr>
+				<tr>
+					<td style="background: #eee;" colspan="2"></td>
+					<td>PHP {{ number_format($invoiceTotal, 2, '.', ',') }}</td>
+				</tr>
+				<tr>
+					<td style="background: #eee; padding-right: 5px;" colspan="2" align="right">Discount: </td>
+					<td>PHP {{ number_format(100 - (($invoice->total_amount / $invoiceTotal) * 100), 0) }}%</td>
+				</tr>
           		<tr>
-              		<td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount (Discounts and VAT Processed): </td>
+              		<td style="background:#eee" colspan="2" align="right" style="padding-right:5px;"> Total Amount: </td>
               		<td>PHP {{number_format($invoice->total_amount,2,'.',',')}}</td>
           		</tr>
       		</table>

@@ -74,14 +74,24 @@
                         		</tr>
                      		</thead>
                      		<tbody>
+							@php ($invoiceTotal = 0)
                      			@foreach($invoice->invoiceItemsInfo as $invoiceItem)
                         		<tr>
                            			<td>{{$invoiceItem->item->item_name}}</td>
                            			<td>{{number_format($invoiceItem->amount,2,'.',',')}}</td>
                         		</tr>
+									@php ($invoiceTotal += $invoiceItem->amount)
                         		@endforeach
+								<tr>
+									<td class="grey darken-4 white-text">Subtotal</td>
+									<td class="grey darken-4 strong white-text">₱ {{ number_format($invoiceTotal, 2, '.', ',') }}</td>
+								</tr>
+								<tr>
+									<td class="grey darken-4 white-text">Discount</td>
+									<td class="grey darken-4 strong white-text">{{ number_format(100 - (($invoice->total_amount / $invoiceTotal) * 100),0) }}%</td>
+								</tr>
                         		<tr>
-                           			<td class="grey darken-4 white-text">Grand Total (Discounts and VAT Processed)</td>
+                           			<td class="grey darken-4 white-text">Grand Total</td>
                            			<td class="grey darken-4 strong white-text">₱ {{number_format($invoice->total_amount,2,'.',',')}}</td>
                         		</tr>
                      		</tbody>
