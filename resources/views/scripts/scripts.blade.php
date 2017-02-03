@@ -161,7 +161,7 @@ Scripts
           console.log('../../invoice' + (_method==='POST'?'':(invoiceId+'/edit')));
           var dateConverter = dueDate.split(" ");
           var dueDate_1 = new Date(Date.parse(dateConverter[1].substring(0,3) + ' ' + dateConverter[0] + ',' + dateConverter[2]));
-          if(dueDate_1 >  new Date().setDate(new Date().getDate()-1)){
+         // if(dueDate_1 >  new Date().setDate(new Date().getDate()-1)){
             table.find('tr').each(function(rowIndex, r){
               $(this).find('td').each(function (colIndex, c) {
                 if(c.textContent.trim())
@@ -193,9 +193,9 @@ Scripts
               alert('Please Input data into table.');
             }
             
-          }else{
-            alert('Payment Due Date must be greater than or equal today');
-          }
+          //}else{
+          //  alert('Payment Due Date must be greater than or equal today');
+          //}
           
           
       });
