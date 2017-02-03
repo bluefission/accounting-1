@@ -19,7 +19,8 @@
     <label for="desc">Asset Name</label>
   </div>
   <div class="input-field col s12 m6 l6">
-    <input id="desc" type="text" name="asset_desc" value="{{count($errors)>0?old('asset_desc'):$asset->asset_desc}}">
+    <!--<input id="desc" type="text" name="asset_desc" value="{{count($errors)>0?old('asset_desc'):$asset->asset_desc}}"> -->
+      <textarea id="desc" class="materialize-textarea" name="asset_desc">{{ count($errors) > 0 ? old('asset_desc') : $asset->asset_desc }}</textarea>
     <label for="desc">Description</label>
   </div>
 </div>

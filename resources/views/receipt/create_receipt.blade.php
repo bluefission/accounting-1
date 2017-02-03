@@ -150,13 +150,17 @@
 										</td>
 									</tr>
 									<tr class="show_ref" style="display: none;">
-										<td>Check Reference Number</td>
+										<td>Reference Number</td>
 										<td>
 											<div class="input-field col s12">
 												<input type="text" name="check_ref" id="check_ref" placeholder="Reference Number (Optional)" />
 											</div>
 										</td>
 									</tr>
+								<tr class="show_card_fee" style="display: none;">
+									<td>Card Withholding Tax (2%)</td>
+									<td>₱ <span id="card_fee"></span></td>
+								</tr>
 	                      			<!-- Floating Action Button -->
           								    <div class="fixed-action-btn" style="bottom: 50px; right: 19px;">
           								    	<button class="btn-floating btn-large red darken-2" type="submit" name="action">

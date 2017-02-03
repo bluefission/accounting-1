@@ -36,11 +36,18 @@ Scripts
           });
           $('#payment_method').change(function () {
               var type = $(this).val();
-              if (type == 'Check') {
+              if (type != 'Cash') {
                   $('.show_ref').slideDown();
               } else {
                   $('.show_ref').slideUp();
               }
+              if (type == 'Card') {
+                  $('.show_card_fee').slideDown();
+              } else {
+                  $('.show_card_fee').slideUp();
+              }
+              var card_fee = $('#paidAmount').val() * 0.02;
+              $('#card_fee').text(parseFloat(card_fee).toFixed(2));
           });
       });
 
