@@ -463,7 +463,7 @@ trait UtilityHelper
                                         ->get();
         }elseif($modelName==='JournalModel'){
             $value = Auth::user()->branch_id;
-            $query = \App\JournalModel;
+            $query = JournalModel::orderBy('id', 'DESC');
             if(!(is_null($value)) && !(Auth::user()->branchInfo->main_office)){
                 $query->whereHas('userCreateInfo',function($q) use ($value){
                             $q->where('branch_id','=',$value);
