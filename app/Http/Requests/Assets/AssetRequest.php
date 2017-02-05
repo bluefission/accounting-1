@@ -31,7 +31,7 @@ class AssetRequest extends Request
             case 'POST':{
                 return ['asset_name' => 'required|min:3|max:255',
                         'asset_vendor' => 'required|min:0|max:255',
-                        'asset_date_acquired'=>'required|before:today',
+                        'asset_date_acquired'=>'required',
                         'asset_original_cost'=>'required',
                         'asset_salvage_percentage'=>'required',
                         'asset_lifespan'=>'required',
@@ -41,7 +41,7 @@ class AssetRequest extends Request
             case 'PATCH':{  
                 return ['asset_name' => 'required|min:3|max:255',
                         'asset_vendor' => 'required|min:0|max:255',
-                        'asset_date_acquired'=>'required|before:today',
+                        'asset_date_acquired'=>'required',
                         'asset_original_cost'=>'required',
                         'asset_salvage_percentage'=>'required',
                         'asset_lifespan'=>'required',
