@@ -31,7 +31,7 @@
                     		<tbody>
                     			@foreach($invoiceList as $invoice)
                     				<tr>
-	                            		<!-- <td><a href="{{route('invoice.show',$invoice->id)}}">{{sprintf("%'.07d\n", $invoice->id)}}</a></td> -->+
+	                            		<!-- <td><a href="{{route('invoice.show',$invoice->id)}}">{{sprintf("%'.07d\n", $invoice->id)}}</a></td> -->
 											<td><a href="{{route('invoice.show',$invoice->id)}}">INV-{{strtoupper(substr(md5($invoice->id), 0, 5))}}</a></td>
 	                            		<td>
 	                            			@if($invoice->is_paid)
