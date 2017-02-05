@@ -66,8 +66,9 @@
 	            			<br>
 	            			<div class="col s12 m3 l4">
 	              				<div class="input-field col s12 m6 l12 due-date">
-	                				<input type="date" class="datepicker" id="paymentDueDate"  value="{{$invoice->payment_due_date!=NULL?date('d F, Y',strtotime($invoice->payment_due_date)):''}}">
-	                				<label for="birthday" class="white-text">Due Date</label>
+	                				<!--<input type="date" class="datepicker" id="paymentDueDate"  value="{{$invoice->payment_due_date!=NULL?date('d F, Y',strtotime($invoice->payment_due_date)):''}}">
+	                				<label for="birthday" class="white-text">Due Date</label> -->
+									<input type="hidden" id="paymentDueDate" value="{{$invoice->payment_due_date!=NULL?date('d F, Y',strtotime($invoice->payment_due_date)):date('d F, Y')}}" />
 	              				</div>
 	            			</div>
 	          			</div>
