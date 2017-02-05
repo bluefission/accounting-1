@@ -53,7 +53,7 @@
     				    <td style="text-align: right;">{{ $i }}</td>
     				    <td style="text-align: left;">{{ wordwrap(\App\ExpenseModel::where('id', $expenseItem->expense_cash_voucher_id)->first()['vendor_number'], 3, '-', true) }}</td>
                         <td style="text-align: left;">{{ \App\ExpenseModel::where('id', $expenseItem->expense_cash_voucher_id)->first()['vendor_name'] }}</td>
-                        <td>{{ date("m/y") }}</td>
+                        <td>{{ $month }}/{{ $year }}</td>
                         <td>{{ strtoupper(\App\AccountTitleModel::where('id', \App\InvExpItemModel::where('id', $expenseItem->item_id)->first()['account_title_id'])->first()['atc']) }}</td>
                         <td>{{ strtoupper(\App\AccountTitleModel::where('id', \App\InvExpItemModel::where('id', $expenseItem->item_id)->first()['account_title_id'])->first()['nature']) }}</td>
                         <td>{{ \App\AccountTitleModel::where('id', \App\InvExpItemModel::where('id', $expenseItem->item_id)->first()['account_title_id'])->first()['tax_rate'] }}%</td>
