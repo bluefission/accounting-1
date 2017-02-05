@@ -86,11 +86,11 @@
 		          	<table id="amountCalc">
 		            	<tbody>
 		              		<tr>
-		                		<td width="42%">Sub Total:</td>
+								<td width="42%">Tax (12%)</td>
 		                		<td></td>
 		               		</tr>
 		              		<tr>
-		                		<td>Tax (12%)</td>
+								<td>Sub Total:</td>
 		                		<td></td>
 		              		</tr>
 		              		<tr>
