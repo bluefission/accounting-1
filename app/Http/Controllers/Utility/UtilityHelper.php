@@ -126,7 +126,7 @@ trait UtilityHelper
     public function searchInvoice($id){
         if(Auth::user()->userType->type === 'Administrator' ||
                 (Auth::user()->branch_id!=NULL && Auth::user()->branchInfo->main_office)){
-            return $id!=NULL?InvoiceModel::orderBy('payment_due_date', 'ASC')->findOrFail($id):InvoiceModel::orderBy('payment_due_date', 'ASC')->all();
+            return $id!=NULL?InvoiceModel::orderBy('payment_due_date', 'ASC')->findOrFail($id):InvoiceModel::orderBy('payment_due_date', 'ASC')->get();
         }elseif(Auth::user()->branch_id!=NULL){
             $query=InvoiceModel::whereHas('userCreateInfo',function($q){
                                             $q->where('branch_id','=',Auth::user()->branch_id);
