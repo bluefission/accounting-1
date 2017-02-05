@@ -576,3 +576,20 @@ Scripts
       }
   });
 </script>
+<script>
+$(function() {
+    function exgen() {
+        var mo = $('#exmo').val();
+        var ye = $('#exy').val();
+        $('.month_filter').val(mo);
+        $('.year_filter').val(ye);
+    }
+    exgen();
+    $('#exmo').change(function () {
+        exgen();
+    });
+    $('#exy').change(function () {
+        exgen();
+    });
+});
+</script>

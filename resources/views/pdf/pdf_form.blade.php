@@ -11,10 +11,10 @@
 @if(strpos($category,'report'))
 <div class="form-group">
    <div class="col-md-9 col-sm-6 col-xs-12">
-      <input type="hidden" name="month_filter" value="{{$month_filter}}">
+      <input type="hidden" class="month_filter" name="month_filter" value="{{$month_filter}}">
    </div>
    <div class="col-md-9 col-sm-6 col-xs-12">
-      <input type="hidden" name="year_filter" value="{{$year_filter}}">
+      <input type="hidden" class="year_filter" name="year_filter" value="{{$year_filter}}">
    </div>
 
    @if(isset($type))

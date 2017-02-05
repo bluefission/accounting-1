@@ -25,7 +25,7 @@
              <p>000-089-472-000</p>
 		  </div>
 		<hr/>
-		<p style="text-align: center;"><strong>Monthly Alphalist of Payees<br />{{ date("F Y") }}</strong></p>
+		<p style="text-align: center;"><strong>Monthly Alphalist of Payees<br />{{ DateTime::createFromFormat('!m', $month)->format('F') }} {{ $year }}</strong></p>
 		<table cellborder="1" style="width:100%; border-collapse: collapse; text-align:center;">
 			<thead>
         <tr>

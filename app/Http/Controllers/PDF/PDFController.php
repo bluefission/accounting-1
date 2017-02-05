@@ -51,7 +51,7 @@ class PDFController extends Controller
                     return $this->generateExpenseSummary()->stream('expense_summary_' . date('m_d_y') . '.pdf');
                     break;
                 case 'monthly_alphalist_report':
-                    return $this->generateMonthlyAlphalist()->setPaper('a4', 'landscape')->stream('monthly_alphalist_' . date('m_d_y') . '.pdf');
+                    return $this->generateMonthlyAlphalist($yearFilter, $monthFilter)->setPaper('a4', 'landscape')->stream('monthly_alphalist_' . date('m_d_y') . '.pdf');
                     break;
                 default:
                     return view('errors.404');
@@ -80,17 +80,17 @@ class PDFController extends Controller
 	    return PDF::loadView('pdf.expense_report_pdf', compact('expenseItemList', 'totalNetValue'));
 	}
 	
-	private function generateMonthlyAlphalist()
+	private function generateMonthlyAlphalist($year, $month)
 	{
-	    $format = date("Y-m");
+	    $format = "{$year}-{$month}";
 
 	    // Get the Rent Expense account title
         $rentExpenseAccountTitle = AccountTitleModel::where('account_title_name', 'LIKE', '%Rent Expense%')->first();
 
         // Get all expenses
         //$expenseItemList = JournalModel::where('debit_title_id', $rentExpenseAccountTitle->id)->where('created_at', 'LIKE', "{$format}%")->get();
-        //$expenseItemList = \App\ExpenseItemModel::where('created_at', 'LIKE', "{$format}%")->get();
-        $expenseItemList = \App\ExpenseItemModel::all();
+        $expenseItemList = \App\ExpenseItemModel::where('created_at', 'LIKE', "{$format}%")->get();
+        //$expenseItemList = \App\ExpenseItemModel::all();
 
         // Total Amount Tax Base and Tax Withheld
 	    $totalTaxBase = 0;
@@ -101,7 +101,7 @@ class PDFController extends Controller
 	        $totalTaxBase += $taxBase;
 	        $totalTaxWithheld += $taxWithheld;
 	    }
-	    return PDF::loadView('pdf.alphalist_pdf', compact('format', 'expenseItemList', 'totalTaxBase', 'totalTaxWithheld'));
+	    return PDF::loadView('pdf.alphalist_pdf', compact('format', 'expenseItemList', 'totalTaxBase', 'totalTaxWithheld', 'month', 'year'));
 	}
 
 	private function generateReceiptPDF($id){

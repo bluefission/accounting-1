@@ -17,6 +17,20 @@
               						<div class="input-field col s12">
                             
                 						{!!Form::open(['url'=>'pdf','method'=>'POST','target'=>'_blank']) !!}
+                                        <div class="input-field col s3">
+                                            <select name="month_filter" id="exmo">
+                                                @foreach(range(1,12) as $month)
+                                                    <option value="{{str_pad($month, 2, "0", STR_PAD_LEFT)}}">{{date('F',strtotime('2016-'.$month))}}</option>
+                                                @endforeach
+                                            </select>
+                                            <label>Month</label>
+                                            <select name="year_filter" id="exy">
+                                                @foreach(range(2016,date("Y")) as $year)
+                                                    <option value="{{$year}}" @if(date("Y") == $year) selected @endif>{{$year}}</option>
+                                                @endforeach
+                                            </select>
+                                            <label>Year</label>
+                                        </div>
                               @include('pdf.pdf_form',['category'=>'monthly_alphalist_report',
                                               'recordId'=>null,
                                               'month_filter'=>null,
