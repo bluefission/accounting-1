@@ -38,6 +38,7 @@
                 <tbody>
                   @if(!(empty($studentList)))
                     @foreach($studentList as $student)
+                        @if ($student->id != 35 && $student->id != 36)
                       <tr>
                         <td><a href="{{route('students.show',$student->id)}}">{{sprintf("%'.07d\n", $student->id)}}</a></td>
                         <td>{{$student->stud_first_name}}</td>
@@ -53,6 +54,7 @@
                           </a-->
                         </td>
                       </tr>
+                      @endif
                     @endforeach
                   @endif
                   
