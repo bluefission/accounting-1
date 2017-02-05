@@ -89,7 +89,8 @@ class PDFController extends Controller
 
         // Get all expenses
         //$expenseItemList = JournalModel::where('debit_title_id', $rentExpenseAccountTitle->id)->where('created_at', 'LIKE', "{$format}%")->get();
-        $expenseItemList = \App\ExpenseItemModel::where('created_at', 'LIKE', "{$format}%")->get();
+        //$expenseItemList = \App\ExpenseItemModel::where('created_at', 'LIKE', "{$format}%")->get();
+        $expenseItemList = \App\ExpenseItemModel::all();
 
         // Total Amount Tax Base and Tax Withheld
 	    $totalTaxBase = 0;
