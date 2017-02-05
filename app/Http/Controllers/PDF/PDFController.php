@@ -45,7 +45,7 @@ class PDFController extends Controller
                     return $this->genearateAssetRegistry()->setPaper('a4', 'landscape')->stream('asset_registry_report_'. date('m_d_y').'.pdf');
                     break;
                 case 'statement_of_cash_flow_report':
-                    return $this->generateCashFlow($yearFilter)->stream('statement_of_cash_flow_'. date('m_d_y').'.pdf');
+                    return $this->generateCashFlow($yearFilter);
                     break;
                 case 'expense_summary_report':
                     return $this->generateExpenseSummary()->stream('expense_summary_' . date('m_d_y') . '.pdf');
@@ -351,7 +351,7 @@ class PDFController extends Controller
             }
         }
 
-        return PDF::loadView('pdf.statement_of_cash_flow_pdf',
+        return view('pdf.statement_of_cash_flow_pdf',
                         compact('totalProfit',
                                 'depreciationValue',
                                 'accountTitleList',
