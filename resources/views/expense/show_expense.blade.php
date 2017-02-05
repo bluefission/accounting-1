@@ -55,7 +55,7 @@
 	            		</div>
 	            		<div class="col s12 m3 l4">
 		              		<p class="strong">Date Issued</p>
-		              		<h4 class="header">{{date('F d, Y',strtotime($expense->created_at))}}</h4>
+		              		<h4 class="header">{{date('F Y',strtotime($expense->created_at))}}</h4>
 	            		</div>
 	            		<br>
 	          		</div>
