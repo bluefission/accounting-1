@@ -23,6 +23,8 @@ class JournalEntryController extends Controller
                             compact('title',
                                     'journalEntryList'));
         }catch(\Exception $ex){
+            echo $ex->getMessage();
+            exit();
             return view('errors.404');
         }
     }
