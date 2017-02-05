@@ -52,11 +52,13 @@
 		                           <td>
 		                        		@if($journalEntry->invoice_id != NULL)
 		                        			<a href="{{route('invoice.show',$journalEntry->invoice_id)}}">
-		                        				#INV-{{sprintf("%'.07d",$journalEntry->invoice_id)}}
+		                        				<!-- #INV-{{sprintf("%'.07d",$journalEntry->invoice_id)}} -->
+													INV-{{strtoupper(substr(md5($journalEntry->invoice_id), 0, 5))}}
 		                        			</a>
 		                        		@elseif($journalEntry->receipt_id != NULL)
 		                        			<a href="{{route('receipt.show',$journalEntry->receipt_id)}}">
-		                        				#REC-{{sprintf("%'.07d",$journalEntry->receipt_id)}}
+		                        				<!-- #REC-{{sprintf("%'.07d",$journalEntry->receipt_id)}} -->
+													REC-{{strtoupper(substr(md5($journalEntry->receipt_id), 0, 5))}}
 		                        			</a>
 		                        		@elseif($journalEntry->expense_id != NULL)
 		                        			<a href="{{route('expense.show',$journalEntry->expense_id)}}">
