@@ -33,7 +33,8 @@
   
   		<div style="width:100%">
       	<div style="float:left;">
-          	<strong>Invoice #{{sprintf("%'.07d\n",$invoice->id)}}</strong>
+          	<!-- <strong>Invoice #{{sprintf("%'.07d\n",$invoice->id)}}</strong> -->
+			<strong>Invoice INV-{{strtoupper(substr(md5($invoice->id), 0, 5))}}</strong>
       	</div>
       		<div style="float:right;">
           		Payment Due Date: {{date('F d, Y',strtotime($invoice->payment_due_date))}}

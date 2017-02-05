@@ -54,11 +54,13 @@
                     		</div>
                     		<div class="col s12 m3 l3">
                       			<p class="strong">Receipt No</p>
-                      			<h4 class="header">#{{sprintf("%'.07d\n", $receipt->id)}}</h4>
+                      			<!-- <h4 class="header">#{{sprintf("%'.07d\n", $receipt->id)}}</h4> -->
+								<h4 class="header">REC-{{strtoupper(substr(md5($receipt->id), 0, 5))}}</h4>
                     		</div>
                     		<div class="col s12 m3 l3">
                       			<p class="strong">Invoice No</p>
-                      			<h4 class="header">#{{sprintf("%'.07d\n", $receipt->invoiceInfo->id)}}</h4>
+                      			<!-- <h4 class="header">#{{sprintf("%'.07d\n", $receipt->invoiceInfo->id)}}</h4> -->
+								<h4 class="header">INV-{{strtoupper(substr(md5($receipt->invoiceInfo->id), 0, 5))}}</h4>
                     		</div>
                     		<div class="col s12 m3 l3">
                       			<p class="strong">Due Date</p>

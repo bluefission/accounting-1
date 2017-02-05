@@ -31,14 +31,16 @@
   
   		<div style="display:inline-block; width:100%">
       	<div style="float:left;">
-          	<strong>Receipt #: {{sprintf("%'.07d\n",$receipt->id)}}</strong>
+          	<!-- <strong>Receipt #: {{sprintf("%'.07d\n",$receipt->id)}}</strong> -->
+			<strong>Receipt REC-{{strtoupper(substr(md5($receipt->id), 0, 5))}}</strong>
       	</div>
       		<div style="float:right;">
 				<strong>Date Paid: {{date('F d, Y',strtotime($receipt->created_at))}}</strong>
       		</div>
   		</div>
   		<div>
-      		<strong>Invoice Info Reference #: {{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</strong>
+      		<!-- <strong>Invoice Info Reference #: {{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</strong> -->
+			<strong>Invoice Reference INV-{{strtoupper(substr(md5($receipt->invoiceInfo->id), 0, 5))}}</strong>
   		</div>
   		<br/>
   		<div>

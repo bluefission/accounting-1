@@ -200,8 +200,10 @@
                                     || strpos($invoiceItems->item->item_name,'Course Fee'))
                                     <tr>
                                       <td>{{date('m-d-Y',strtotime($receipt->created_at))}}</td>
-                                      <td><a href="{{route('receipt.show',$receipt->id)}}">{{sprintf("%'.07d\n",$receipt->id)}}</a></td>
-                                      <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">{{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</a></td>
+                                      <!-- <td><a href="{{route('receipt.show',$receipt->id)}}">{{sprintf("%'.07d\n",$receipt->id)}}</a></td>
+                                      <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">{{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</a></td> -->
+                                      <td><a href="{{route('receipt.show',$receipt->id)}}">REC-{{strtoupper(substr(md5($receipt->id), 0, 5))}}</a></td>
+                                      <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">INV-{{strtoupper(substr(md5($receipt->invoiceInfo->id), 0, 5))}}</a></td>
                                       <td>₱ {{$receipt->amount_paid}}</td>
                                       <td>₱ {{$receipt->outstanding_balance}}</td>
                                     </tr>
@@ -237,8 +239,10 @@
                                     <tr>
                                       <td>{{date('m-d-Y',strtotime($receipt->created_at))}}</td>
                                       <td>{{$invoiceItems->item->item_name}}</td>
-                                      <td><a href="{{route('receipt.show',$receipt->id)}}">{{sprintf("%'.07d\n",$receipt->id)}}</a></td>
-                                      <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">{{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</a></td>
+                                      <!-- <td><a href="{{route('receipt.show',$receipt->id)}}">{{sprintf("%'.07d\n",$receipt->id)}}</a></td>
+                                      <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">{{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</a></td> -->
+                                      <td><a href="{{route('receipt.show',$receipt->id)}}">REC-{{strtoupper(substr(md5($receipt->id), 0, 5))}}</a></td>
+                                      <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">INV-{{strtoupper(substr(md5($receipt->invoiceInfo->id), 0, 5))}}</a></td>
                                       <td>₱ {{$invoiceItems->amount}}</td>
                                     </tr>
                                 @endif

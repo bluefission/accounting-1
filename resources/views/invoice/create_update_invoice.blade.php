@@ -61,7 +61,8 @@
 	            			</div>
 	            			<div class="col s12 m3 l2">
 		              			<p class="strong">Invoice No</p>
-		              			<h4 class="header">#{{sprintf("%'.07d\n", $invNumber)}}</h4>
+		              			<!-- <h4 class="header">#{{sprintf("%'.07d\n", $invNumber)}}</h4> -->
+								<h4 class="header">INV-{{strtoupper(substr(md5($invNumber), 0, 5))}}</h4>
 	            			</div>
 	            			<br>
 	            			<div class="col s12 m3 l4">

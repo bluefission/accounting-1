@@ -32,8 +32,10 @@
                     		<tbody>
                                 @foreach($receiptList as $receipt)
                                 <tr>
-                                    <td><a href="{{route('receipt.show',$receipt->id)}}">{{sprintf("%'.07d\n",$receipt->id)}}</a></td>
-                                    <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">{{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</a></td>
+                                    <!-- <td><a href="{{route('receipt.show',$receipt->id)}}">{{sprintf("%'.07d\n",$receipt->id)}}</a></td> -->
+										<td><a href="{{route('receipt.show',$receipt->id)}}">REC-{{strtoupper(substr(md5($receipt->id), 0, 5))}}</a></td>
+                                    <!-- <td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">{{sprintf("%'.07d\n",$receipt->invoiceInfo->id)}}</a></td> -->
+									<td><a href="{{route('invoice.show',$receipt->invoiceInfo->id)}}">INV-{{strtoupper(substr(md5($receipt->invoiceInfo->id), 0, 5))}}</a></td>
                                     <td>{{date('m-d-Y',strtotime($receipt->created_at))}}</td>
                                     <td>{{$receipt->invoiceInfo->studentInfo->stud_first_name}}&nbsp;{{$receipt->invoiceInfo->studentInfo->stud_last_name}}</td>
                                     <td>₱ {{number_format($receipt->amount_paid,2,'.',',')}}</td>
