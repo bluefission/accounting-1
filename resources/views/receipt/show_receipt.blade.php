@@ -62,10 +62,10 @@
                       			<!-- <h4 class="header">#{{sprintf("%'.07d\n", $receipt->invoiceInfo->id)}}</h4> -->
 								<h4 class="header">INV-{{strtoupper(substr(md5($receipt->invoiceInfo->id), 0, 5))}}</h4>
                     		</div>
-                    		<div class="col s12 m3 l3">
+                    		<!-- <div class="col s12 m3 l3">
                       			<p class="strong">Due Date</p>
                       			<h4 class="header">{{date('m/d/y',strtotime($receipt->invoiceInfo->payment_due_date))}}</h4>
-                    		</div>
+                    		</div> -->
                   		</div>
                 	</div>
               	</div>
