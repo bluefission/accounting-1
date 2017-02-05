@@ -42,7 +42,7 @@
                      	<tbody>
                      		@foreach($journalEntryList as $journalEntry)
 	                     		<tr>
-		                           <td>{{$journalEntry->created_at}}</td>
+		                           <td>{{date('m-d-Y',strtotime($journalEntry->created_at))}}</td>
 		                           <td>
 		                           		@if($journalEntry->userCreateInfo->branch_id != NULL)
 		                           			{{$journalEntry->userCreateInfo->branchInfo->branch_name}}
