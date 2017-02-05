@@ -26,6 +26,8 @@ class InvoiceController extends Controller
                             compact('invoiceList',
                                     'title'));    
         }catch(\Exception $ex){
+            var_dump($ex->getMessage());
+            exit();
             return view('errors.404');
         }
         
